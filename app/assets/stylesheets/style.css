@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'neue';
+    src: url('/neue_plak_thin.ttf') format('truetype');
+}
+
+
+body {
+    font-family: 'Neue Plak Thin', sans-serif;
+}
+a {
+    text-decoration: none; /* Supprime le soulignement */
+    color: inherit; /* Prend la couleur du texte parent (ici celle de votre titre ou du projet) */
+}
+.box {
+    height: auto ;
+    width: auto ;
+    margin-bottom: 105px;
+    justify-content: center;
+    
+}
+
+.img-fluid {
+    border-radius: 20px;
+}
+.titles {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le contenu */
+}
+.clock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.clock {
+    width: 500px; /* Ajuste la largeur */
+    height: auto; /* Garde les proportions */
+    bottom: 60px;
+    position:relative;
+
+}
+
+.flex{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -50px;
+
+
+}
+.timer{
+  font-family:'neue'!important;
+  font-size: 100px;
+  background-color: #2E2E2E;
+  color: white;
+  padding: 20px 60px;
+}
+.navbar {
+    padding: 15px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+header .navbar .navbar-brand {
+    background-color: #2279cf;
+}
+.navbar-brand img {
+    max-height: 50px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.2rem;
+    margin-left: 15px;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(0, 0, 0);
+}

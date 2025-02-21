@@ -1,68 +1,5 @@
 <body>
-    <style>
-        @font-face {
-            font-family: 'Neue Plak Thin';
-            src: url('/assets/Neue Plak Thin.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        body {
-            font-family: 'Neue Plak Thin', sans-serif;
-        }
-        a {
-            text-decoration: none; /* Supprime le soulignement */
-            color: inherit; /* Prend la couleur du texte parent (ici celle de votre titre ou du projet) */
-        }
-        .box {
-            height: auto ;
-            width: auto ;
-            margin-bottom: 105px;
-            justify-content: center;
-            
-        }
-
-        .img-fluid {
-            border-radius: 20px;
-        }
-        .titles {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centre le contenu */
-        }
-        .clock-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-        .clock {
-            width: 500px; /* Ajuste la largeur */
-            height: auto; /* Garde les proportions */
-            bottom: 60px;
-            position:relative;
-
-        }
-        .navbar {
-            padding: 15px 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-        header .navbar .navbar-brand {
-            background-color: #2279cf;
-        }
-        .navbar-brand img {
-            max-height: 50px;
-        }
-
-        .navbar-nav .nav-link {
-            font-size: 1.2rem;
-            margin-left: 15px;
-        }
-        .navbar-light .navbar-nav .nav-link {
-            color: rgb(0, 0, 0);
-        }
-
-    </style>
+   
       <header style="background-color: #ffffff !important" class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <!-- Logo + Nom -->
@@ -98,7 +35,9 @@
         </div>
 
     </div>
-        
+    <div class="flex">
+      <span id="countdown" class="timer">Test</span>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -141,5 +80,37 @@
             <% end %>
         </div>
     </div>
+    <script>
+  function getNextFridayMidnight() {
+      const now = new Date();
+      let nextFriday = new Date(now);
+      nextFriday.setDate(now.getDate() + ((5 - now.getDay() + 7) % 7 || 7)); // Prochain vendredi
+      nextFriday.setHours(0, 0, 0, 0);
+      return nextFriday;
+  }
+
+  function updateCountdown() {
+      const now = new Date();
+      const targetDate = getNextFridayMidnight();
+      const diff = targetDate - now;
+      
+      if (diff <= 0) {
+          document.getElementById("countdown").textContent = "00 00 00 00";
+          return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById("countdown").textContent = 
+          `${days.toString().padStart(1, '')} j ${hours.toString().padStart(2, '')} h ${minutes.toString().padStart(2, '0')} m ${seconds.toString().padStart(2, '0')} s `;
+  }
+
+  setInterval(updateCountdown, 1000);
+  document.addEventListener("DOMContentLoaded", updateCountdown);
+  
+</script>
 
   </body>
