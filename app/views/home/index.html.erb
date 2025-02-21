@@ -1,27 +1,145 @@
-<h1>Home</h1>
+<body>
+    <style>
+        @font-face {
+            font-family: 'Neue Plak Thin';
+            src: url('/assets/Neue Plak Thin.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
 
-<%= link_to "Artistes", artists_path %>
-<%= link_to "Projects", projects_path %>
+        body {
+            font-family: 'Neue Plak Thin', sans-serif;
+        }
+        a {
+            text-decoration: none; /* Supprime le soulignement */
+            color: inherit; /* Prend la couleur du texte parent (ici celle de votre titre ou du projet) */
+        }
+        .box {
+            height: auto ;
+            width: auto ;
+            margin-bottom: 105px;
+            justify-content: center;
+            
+        }
 
-<div id="projects">
-  <% @projects_by_date.each do |date, projects| %>
-    <h2>
-      <% if date == Date.today %>
-        Aujourd'hui
-      <% elsif date == Date.tomorrow %>
-        Demain
-      <% else %>
-        <%= date.strftime("%d %B %Y") %> 
-      <% end %>
-    </h2>
+        .img-fluid {
+            border-radius: 20px;
+        }
+        .titles {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centre le contenu */
+        }
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .clock {
+            width: 500px; /* Ajuste la largeur */
+            height: auto; /* Garde les proportions */
+            bottom: 60px;
+            position:relative;
 
-    <% projects.each do |project| %>
-      <%= render project %>
-      <p>
-        <%= link_to "Show this project", project %>
-      </p>
-    <% end %>
-  <% end %>
-</div>
+        }
+        .navbar {
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        header .navbar .navbar-brand {
+            background-color: #2279cf;
+        }
+        .navbar-brand img {
+            max-height: 50px;
+        }
 
+        .navbar-nav .nav-link {
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+        .navbar-light .navbar-nav .nav-link {
+            color: rgb(0, 0, 0);
+        }
 
+    </style>
+      <header style="background-color: #ffffff !important" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <!-- Logo + Nom -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <%= image_tag "clock.png" %>
+                <span style="font-weight: bold; font-size: 1.5rem;">RAP CLOCK</span>
+            </a>
+    
+            <!-- Bouton pour mobile -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Liens à droite -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <%= link_to "Artistes", artists_path, class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Projets", projects_path, class: "nav-link" %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+  
+    <div class="titles">
+        <h1 style="font-size: 900%;">RAP CLOCK</h1>
+        <div class="clock-container">
+            <%= image_tag "clock.png" %>
+        </div>
+
+    </div>
+        
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+            <h2>À LA UNE - Albums Rap</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <% @projects_by_date.each do |date, projects| %>
+            <div class="col-12">
+                <h2>
+                <% if date == Date.today %>
+                    Aujourd'hui
+                <% elsif date == Date.tomorrow %>
+                    Demain
+                <% else %>
+                    <%= date.strftime("%d %B %Y") %> 
+                <% end %>
+                </h2>
+            </div>
+
+            <% projects.each do |project| %>
+                <div class="col-md-3">
+                <%= link_to project_path(project), id: dom_id(project) do %> <!-- Lien vers la page show du projet -->                     
+                    <div class="box">
+                        <img src="<%= project.cover %>" alt="<%= project.name %>" class="img-fluid">
+                        <h3><%= project.name %></h3>
+                        <h6>
+                            <% if project.artists.any? %>
+                            <%= project.artists.map(&:pseudo).join(", ") %>
+                            <% else %>
+                            Pas d'artistes.
+                            <% end %>
+                        </h6>
+                    </div>
+
+                <% end %>
+                </div>
+            <% end %>
+            <% end %>
+        </div>
+    </div>
+
+  </body>
