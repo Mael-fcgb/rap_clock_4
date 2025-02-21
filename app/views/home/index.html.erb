@@ -29,9 +29,9 @@
     </header>
   
     <div class="titles">
-        <h1 style="font-size: 900%;">RAP CLOCK</h1>
+        <h1 style="font-size: 700%;">RAP CLOCK</h1>
         <div class="clock-container">
-            <%= image_tag "clock.png" %>
+            <%= image_tag "clock.png" , class: "clock" %>
         </div>
 
     </div>
@@ -40,19 +40,23 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">
-            <h2>À LA UNE - Albums Rap</h2>
-            </div>
-        </div>
-
-        <div class="row">
             <% @projects_by_date.each do |date, projects| %>
             <div class="col-12">
                 <h2>
                 <% if date == Date.today %>
-                    Aujourd'hui
+                    <div class="row">
+                        <div class="col-12 text-center">
+                        <h1>Aujourd'hui</h1>
+                        </div>
+                    </div>
+                    
                 <% elsif date == Date.tomorrow %>
-                    Demain
+                    <div class="row">
+                        <div class="col-12 text-center">
+                        <h1>Demain</h1>
+                        </div>
+                    </div>
+                    
                 <% else %>
                     <%= date.strftime("%d %B %Y") %> 
                 <% end %>

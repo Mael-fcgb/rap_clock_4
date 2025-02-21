@@ -22,8 +22,98 @@
     
     <%= javascript_importmap_tags %>
   </head>
+<style>
+    @font-face {
+      font-family: 'Neue Plak Thin';
+      src: url('/assets/Neue Plak Thin.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
+    body {
+        font-family: 'Neue Plak Thin', sans-serif;
+    }
+    a {
+        text-decoration: none; /* Supprime le soulignement */
+        color: inherit; /* Prend la couleur du texte parent (ici celle de votre titre ou du projet) */
+    }
+    .box {
+        height: auto ;
+        width: auto ;
+        margin-bottom: 105px;
+        justify-content: center;
+        
+    }
+
+    .img-fluid {
+        border-radius: 20px;
+    }
+    .titles {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centre le contenu */
+    }
+    .clock-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .clock {
+        width: 400px; /* Ajuste la largeur */
+        height: auto; /* Garde les proportions */
+        bottom: 60px;
+        position:relative;
+
+    }
+    .navbar {
+        padding: 15px 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+    header .navbar .navbar-brand {
+        background-color: #2279cf;
+    }
+    .navbar-brand img {
+        max-height: 50px;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 1.2rem;
+        margin-left: 15px;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        color: rgb(0, 0, 0);
+    }
+
+</style>
   <body>
+      <header style="background-color: #ffffff !important" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <!-- Logo + Nom -->
+            <a class="navbar-brand d-flex align-items-center" href="<%= root_path %>">
+                <%= image_tag "clock.png" %>
+                <span style="font-weight: bold; font-size: 1.5rem;">RAP CLOCK</span>
+            </a>
+
+            <!-- Bouton pour mobile -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Liens à droite -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <%= link_to "Artistes", artists_path, class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Projets", projects_path, class: "nav-link" %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </header>
     <%= yield %>
   </body>
 </html>
