@@ -67,4 +67,4 @@ class ArtistsController < ApplicationController
     def artist_params
       params.expect(artist: [ :pseudo, :image, :description ])
     end
-end
+  end
