@@ -3,9 +3,21 @@
     src: url('/neue_plak_thin.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'manrope';
+    src: url('/Manrope-Regular') format('truetype');
+}
+
+h1, h2{
+    font-family: 'neue';
+}
+
+h3{
+    font-family: 'manrope';
+}
 
 body {
-    font-family: 'Neue Plak Thin', sans-serif;
+    font-family: 'manrope', sans-serif;
 }
 a {
     text-decoration: none; /* Supprime le soulignement */
@@ -23,6 +35,7 @@ a {
     border-radius: 20px;
 }
 .titles {
+    font-family: 'neue';
     display: flex;
     flex-direction: column;
     align-items: center; /* Centre le contenu */
