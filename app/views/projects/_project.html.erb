@@ -1,80 +1,34 @@
 <body>
-    <div class="flex">
-        <span id="countdown" class="timer">Test</span>
-    </div>
     <div class="container">
         <div class="row">
             <% @projects_by_date.each do |date, projects| %>
             <div class="col-12">
             <% projects.each do |project| %>
                 <div class="col-md-3">
-                <%= link_to project_path(project), id: dom_id(project) do %> <!-- Lien vers la page show du projet -->                     
-                    <div class="box">
-                        <img src="<%= project.cover %>" alt="<%= project.name %>" class="img-fluid">
-                        <h3><%= project.name %></h3>
-                        <h6>
-                            <% if project.artists.any? %>
-                            <%= project.artists.map(&:pseudo).join(", ") %>
-                            <% else %>
-                            Pas d'artistes.
-                            <% end %>
-                        </h6>
-                        <p>
-                          <strong>Date:</strong>
-                          <%= project.date %>
-                        </p>
-
-                        <p>
-                          <strong>Tracklist:</strong>
-                          <%= project.tracklist %>
-                        </p>
-                    </div>
-
-                <% end %>
+                    <%= link_to project_path(project), id: dom_id(project) do %>                     
+                        <div class="box">
+                            <img src="<%= project.cover %>" alt="<%= project.name %>" class="img-fluid">
+                            <h3><%= project.name %></h3>
+                            <h6>
+                                <% if project.artists.any? %>
+                                    <%= project.artists.map(&:pseudo).join(", ") %>
+                                <% else %>
+                                    Pas d'artistes.
+                                <% end %>
+                            </h6>
+                            <p>
+                                <strong>Date:</strong>
+                                <%= project.date %>
+                            </p>
+                            <p>
+                                <strong>Tracklist:</strong>
+                                <%= project.tracklist %>
+                            </p>
+                        </div>
+                    <% end %>
                 </div>
             <% end %>
             <% end %>
         </div>
     </div>
-
-
 </body>
-
-
-
-
-<div id="<%= dom_id project %>">
-  <p>
-    <strong>Name:</strong>
-    <%= project.name %>
-  </p>
-
-    <p>
-    <strong>Cover:</strong>
-      <%= project.cover %>
-    </p>
-
-  <p>
-    <strong>Date:</strong>
-    <%= project.date %>
-  </p>
-
-  <p>
-    <strong>Tracklist:</strong>
-    <%= project.tracklist %>
-  </p>
-
-  <p>
-    <strong>Artists:</strong>
-    <% if project.artists.any? %>
-      <ul>
-        <% project.artists.each do |artist| %>
-          <li><%= artist.pseudo %></li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>Pas d'artistes.</p>
-    <% end %>
-  </p>
-
-</div>
