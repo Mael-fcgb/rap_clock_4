@@ -1,36 +1,24 @@
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div id="<%= dom_id project %>">
-                    <p>
-                        <strong>Name:</strong>
-                        <%= project.name %>
-                    </p>
-                    <p>
-                        <strong>Cover:</strong>
-                        <%= image_tag project.cover %>
-                    </p>
-                    <p>
-                        <strong>Date:</strong>
-                        <%= project.date %>
-                    </p>
-                    <p>
-                        <strong>Tracklist:</strong>
-                        <%= project.tracklist %>
-                    </p>
-                    <p>
-                        <strong>Artists:</strong>
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h2 class="card-title"><%= project.name %></h2>
+                        <img src="<%= project.cover %>" alt="<%= project.name %>" class="img-fluid mb-3">
+                        <p><strong>Date:</strong> <%= project.date %></p>
+                        <p><strong>Tracklist:</strong> <%= project.tracklist %></p>
+                        <p><strong>Artists:</strong></p>
                         <% if project.artists.any? %>
-                            <ul>
+                            <ul class="list-group">
                                 <% project.artists.each do |artist| %>
-                                    <li><%= artist.pseudo %></li>
+                                    <li class="list-group-item"><%= artist.pseudo %></li>
                                 <% end %>
                             </ul>
                         <% else %>
                             <p>Pas d'artistes.</p>
                         <% end %>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
