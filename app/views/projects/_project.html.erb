@@ -1,34 +1,27 @@
-<body>
-    <div class="container">
-        <div class="row">
-            <% @projects_by_date.each do |date, projects| %>
-            <div class="col-12">
-            <% projects.each do |project| %>
-                <div class="col-md-3">
-                    <%= link_to project_path(project), id: dom_id(project) do %>                     
-                        <div class="box">
-                            <img src="<%= project.cover %>" alt="<%= project.name %>" class="img-fluid">
-                            <h3><%= project.name %></h3>
-                            <h6>
-                                <% if project.artists.any? %>
-                                    <%= project.artists.map(&:pseudo).join(", ") %>
-                                <% else %>
-                                    Pas d'artistes.
-                                <% end %>
-                            </h6>
-                            <p>
-                                <strong>Date:</strong>
-                                <%= project.date %>
-                            </p>
-                            <p>
-                                <strong>Tracklist:</strong>
-                                <%= project.tracklist %>
-                            </p>
-                        </div>
-                    <% end %>
-                </div>
-            <% end %>
-            <% end %>
+<% if @projects_by_date.present? %>
+  <% @projects_by_date.each do |date, projects| %>
+    <div class="col-12">
+      <% projects.each do |project| %>
+        <div class="col-md-3">
+          <%= link_to project_path(project), id: dom_id(project) do %>                     
+            <div class="box">
+              <img src="<%= project.cover %>" alt="<%= project.name %>" class="img-fluid">
+              <h3><%= project.name %></h3>
+              <h6>
+                <% if project.artists.any? %>
+                  <%= project.artists.map(&:pseudo).join(", ") %>
+                <% else %>
+                  Pas d'artistes.
+                <% end %>
+              </h6>
+              <p><strong>Date:</strong> <%= project.date %></p>
+              <p><strong>Tracklist:</strong> <%= project.tracklist %></p>
+            </div>
+          <% end %>
         </div>
+      <% end %>
     </div>
-</body>
+  <% end %>
+<% else %>
+  <p>Aucun projet disponible.</p>
+<% end %>
